@@ -1,9 +1,6 @@
 extends Area2D
 
-var lives: int = 3
-
 func _on_body_entered(body: Node2D) -> void:
-	lives -= 1
-	if lives <= 0:
-		lives = 3
-		get_tree().reload_current_scene()
+	# Check if the body entering has the 'take_damage' function
+	if body.has_method("take_damage"):
+		body.take_damage()
